@@ -27,3 +27,48 @@ of the two center squares.
 There are many different algorithms you can use to solve this problem. The 
 interesting challenge is to come up with a strategy that works.
 */
+import "turns";
+
+function pickUpLastBeepers(){
+	while(beepersPresent()){
+		move();
+	}
+	turnAround();
+	move();
+	pickBeeper();
+	move();
+}
+function putAllBeepers(){
+	while(frontIsClear()){
+		putBeeper();
+		move();
+	}
+	putBeeper();
+	pickUpBeepers();
+}
+function pickUpBeepers(){
+	while(beepersPresent()){
+		if(frontIsClear()){
+			move();
+		}
+		else{
+			pickBeeper();
+			turnAround();
+			move();
+		}
+	}
+}
+function Solve(){
+	putAllBeepers();
+	turnAround();
+	move();
+	while(beepersPresent()){
+		pickUpLastBeepers();
+	}
+	turnAround();
+	move();
+	putBeeper();
+	while(frontIsClear()){
+		move();
+	}
+}
